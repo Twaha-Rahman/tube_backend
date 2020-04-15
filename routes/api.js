@@ -29,6 +29,18 @@ router.post('/init/', async (req, res) => {
         isSuccessful: true,
       });
     } catch (error) {
+      const generatedFrom = {
+        side: 'server',
+        place: 'api.js',
+      };
+
+      const newReport = new reportModel({
+        errorMessage: error.message,
+        errorStack: error.stack,
+        generatedFrom,
+      });
+      await newReport.save();
+
       res.status(400).json({
         status: 400,
         isSuccessful: false,
@@ -60,6 +72,18 @@ router.post('/init/', async (req, res) => {
         });
       }
     } catch (error) {
+      const generatedFrom = {
+        side: 'server',
+        place: 'api.js',
+      };
+
+      const newReport = new reportModel({
+        errorMessage: error.message,
+        errorStack: error.stack,
+        generatedFrom,
+      });
+      await newReport.save();
+
       res.status(400).json({
         status: 400,
         isSuccessful: false,
@@ -102,6 +126,18 @@ router.post('/delete-device', async (req, res) => {
       });
     }
   } catch (error) {
+    const generatedFrom = {
+      side: 'server',
+      place: 'api.js',
+    };
+
+    const newReport = new reportModel({
+      errorMessage: error.message,
+      errorStack: error.stack,
+      generatedFrom,
+    });
+    await newReport.save();
+
     res.status(400).json({
       status: 400,
       isSuccessful: false,
@@ -146,6 +182,18 @@ router.post('/query', async (req, res) => {
       });
     }
   } catch (error) {
+    const generatedFrom = {
+      side: 'server',
+      place: 'api.js',
+    };
+
+    const newReport = new reportModel({
+      errorMessage: error.message,
+      errorStack: error.stack,
+      generatedFrom,
+    });
+    await newReport.save();
+
     res.status(400).json({
       status: 400,
       isSuccessful: false,
@@ -168,6 +216,18 @@ router.post('/analytics', async (req, res) => {
       status: 201,
     });
   } catch (error) {
+    const generatedFrom = {
+      side: 'server',
+      place: 'api.js',
+    };
+
+    const newReport = new reportModel({
+      errorMessage: error.message,
+      errorStack: error.stack,
+      generatedFrom,
+    });
+    await newReport.save();
+
     res.status(400).json({
       status: 400,
       isSuccessful: false,
@@ -193,6 +253,18 @@ router.post('/report', async (req, res) => {
       status: 201,
     });
   } catch (error) {
+    const generatedFrom = {
+      side: 'server',
+      place: 'api.js',
+    };
+
+    const newReport = new reportModel({
+      errorMessage: error.message,
+      errorStack: error.stack,
+      generatedFrom,
+    });
+    await newReport.save();
+
     res.status(400).json({
       status: 400,
     });
