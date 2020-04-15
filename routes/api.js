@@ -11,8 +11,6 @@ module.exports = router;
 // devices = user's (one or more) devices public key
 
 router.post('/init/', async (req, res) => {
-  console.log(Object.keys(req.body).length);
-
   if (Object.keys(req.body).length > 2) {
     const noificationSubscriptionObj = req.body;
 
@@ -31,7 +29,6 @@ router.post('/init/', async (req, res) => {
         isSuccessful: true,
       });
     } catch (error) {
-      console.log('error b1', error);
       res.status(400).json({
         status: 400,
         isSuccessful: false,
@@ -41,8 +38,6 @@ router.post('/init/', async (req, res) => {
     try {
       const document = await usersModel.findOne({ uid: req.body.uid });
       let updateDoc = true;
-
-      console.log(document.devices[0].keys.p256dh);
 
       document.devices.forEach((element) => {
         if (element.keys.p256dh === req.body.device.keys.p256dh && element.keys.auth === req.body.device.keys.auth) {
@@ -64,14 +59,7 @@ router.post('/init/', async (req, res) => {
           isSuccessful: true,
         });
       }
-
-      // const uniqueNewDevicesArr = [...new Set([...document.devices, req.body.device])];
-      // const newDocument = JSON.parse(JSON.stringify(document));
-      // newDocument.devices = uniqueNewDevicesArr;
-      //console.log(newDocument);
     } catch (error) {
-      console.log('error b2', error);
-
       res.status(400).json({
         status: 400,
         isSuccessful: false,
@@ -101,8 +89,6 @@ router.post('/delete-device', async (req, res) => {
 
     updatedDoc.devices = updatedDevices;
 
-    console.log(updatedDevices, updateNeeded, null);
-
     if (updateNeeded) {
       await usersModel.findOneAndUpdate({ uid }, updatedDoc);
       res.status(204).json({
@@ -116,8 +102,6 @@ router.post('/delete-device', async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
-
     res.status(400).json({
       status: 400,
       isSuccessful: false,
@@ -140,7 +124,6 @@ router.post('/query', async (req, res) => {
       uid,
       query: queriesArr,
     };
-    console.log(updatedDoc);
 
     if (doc) {
       if (JSON.stringify(req.body) === JSON.stringify(updatedDoc)) {
@@ -163,8 +146,6 @@ router.post('/query', async (req, res) => {
       });
     }
   } catch (error) {
-    console.log(error);
-
     res.status(400).json({
       status: 400,
       isSuccessful: false,

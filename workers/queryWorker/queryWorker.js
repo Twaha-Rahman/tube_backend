@@ -99,8 +99,6 @@ const constantQueryChecker = async () => {
       }
     }
   } catch (error) {
-    console.log(error);
-
     const generatedFrom = {
       side: 'server',
       place: 'queryWorker.js',

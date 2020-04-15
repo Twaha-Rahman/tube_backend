@@ -27,10 +27,9 @@ async function constantNotifier() {
 
       if (notificationObj.totalNewNotificationCount > 0) {
         delete notificationObj.totalNewNotificationCount;
-        console.log(notificationObj);
+
         for (const device of devices) {
           const res = await notify(device, JSON.stringify(notificationObj));
-          console.log(res);
 
           if (res === true) {
             await notificationBucketModel.deleteOne({ uid });
@@ -40,7 +39,7 @@ async function constantNotifier() {
             // This subscription is invalid....attempt to remove it...
             const userWithInvalidSubscriptionObj = await usersModel.find({ uid });
             const { devices } = userWithInvalidSubscriptionObj[0]._doc;
-            console.log(devices);
+
             const validDevices = devices.filter((device) => {
               if (JSON.stringify(device) === JSON.stringify(deviceObj)) {
                 return false;
