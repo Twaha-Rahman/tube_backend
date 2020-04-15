@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 const youtubeDataApiKey = require('../../privateKeys/youtubeDataApiKey');
 const { queryModel, notificationBucketModel, reportModel } = require('../../models/api');
 const fetcher = require('./fetcher');
+const matchChecker = require('../../utilities/matchChecker');
 
 // get the document(each document represents indivitual user)
 // each query in a doc refers to to each indivitual channel(each channel can have one or more subscription....(one or more keywords and lookeduptovidtag))
@@ -23,8 +24,6 @@ const constantQueryChecker = async () => {
     const documents = await queryModel.find();
     if (documents.length > 0) {
       for (const obj of documents) {
-        console.log(obj._doc);
-
         const { uid, query } = obj._doc;
         const newVidPerChannel = {};
         const newUserObj = {
@@ -53,6 +52,7 @@ const constantQueryChecker = async () => {
 
             let goAheadChecking = true;
             const titlesArr = [];
+            const descriptionsArr = [];
 
             for (const vidInfoObj of data.items) {
               if (vidInfoObj.snippet.resourceId.videoId === lookedUpToThisVideoTag) {
@@ -61,17 +61,17 @@ const constantQueryChecker = async () => {
 
               if (goAheadChecking) {
                 titlesArr.push(vidInfoObj.snippet.title);
+                descriptionsArr.push(vidInfoObj.snippet.description);
               }
             }
             let newVidCount = 0;
 
+            let titleLoopCount = 0;
             for (const title of titlesArr) {
-              for (const keyWord of keyWords) {
-                const regex = new RegExp(keyWord, 'i');
-                if (regex.test(title)) {
-                  newVidCount = newVidCount + 1;
-                }
+              if (matchChecker(title, keyWords || matchChecker(descriptionsArr[titleLoopCount], keyWords))) {
+                newVidCount = newVidCount + 1;
               }
+              titleLoopCount += 1;
             }
 
             if (newVidCount !== 0) {
@@ -86,14 +86,12 @@ const constantQueryChecker = async () => {
           newUserObj.query.push(channelQueryObjCopy);
         }
 
-        console.log(newUserObj);
         await queryModel.findOneAndUpdate({ uid }, newUserObj);
 
         const userNotificationCountObj = {
           uid,
           newVidPerChannel,
         };
-        console.log(userNotificationCountObj);
 
         const options = { upsert: true, setDefaultsOnInsert: true };
 
@@ -121,4 +119,4 @@ const constantQueryChecker = async () => {
 
 constantQueryChecker();
 
-setInterval(constantQueryChecker, 600000);
+setInterval(constantQueryChecker, 6_00_000);
