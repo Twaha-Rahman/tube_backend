@@ -1,0 +1,48 @@
+POST http://localhost:3005/api/query
+Content-Type: application/json
+
+{
+    "uid": "1fdgdggr23",
+    "queries": [{"channelName":"PewDiePie","channelTag":"UC-lHJZR3Gqxm24_Vd_AJ5Yw","playlistId":"UU-lHJZR3Gqxm24_Vd_AJ5Yw","details":[{"lookedUpToThisVideoTag":"evcMQ7Lk8NU","keyWords":["minecraft"]}]}, {"channelName":"Marques Brownlee","channelTag":"UCBJycsmduvYEL83R_U4JriQ","playlistId":"UCBJycsmduvYEL83R_U4JriQ","details":[{"lookedUpToThisVideoTag":"0sXvuUrJa0o","keyWords":["x"]}]}]
+}
+
+###
+
+POST http://localhost:3005/api/init
+Content-Type: application/json
+
+{
+    "Ux": "fdasfsfd",
+    "fgsdgdfg": "fsdfsdfs",
+    "sfgdfg": "sdfgsgsg"
+}
+
+###
+
+POST http://localhost:3005/api/init
+Content-Type: application/json
+
+{
+    "uid": "8d0rgo5cck8myo7cb",
+    "device": {
+        "keys": {
+            "p256dh": "BIx9uRNB-y9blPBQigYlLAdOb18E2AhDAOyO6ixRK8hzNVPcR0xcN4Z_A4sxzEpQsgU6I_JgtX7NKKlsty8i5iI",
+            "auth": "vbqFbN6_D-Zyz1WdKRtZoL"
+        }
+    }
+}
+
+###
+
+POST http://localhost:3005/api/delete-device
+Content-Type: application/json
+
+{
+    "uid": "8d0rgo5cck8myo7cb",
+    "obj": {
+        "keys": {
+            "p256dh": "BFielYx2mgmJCx0dqbrWo80o2UKor0wWfrpSoMbVzl6sie5YGkjNDoq2YMy8vFw99l1gCUfQMIYg5-M715Hg17U",
+            "auth": "QZ0XshrOIaHdvXJB6HrRZQ"
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "A backend server for TubeNotify",
+  "main": "index.js",
+  "scripts": {
+    "normal": "nodemon",
+    "killer": "killport.bat",
+    "ndb": "killport.bat && ndb node .",
+    "devStart": "nodemon --inspect=0.0.0.0:9233",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Twaha Rahman",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "comlink": "^4.2.0",
+    "cors": "^2.8.5",
+    "detect-browser": "^5.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.7",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.2",
+    "uniqid": "^5.2.0",
+    "web-push": "^3.4.3"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "sharp": "^0.25.2"
+  }
+}

@@ -1,0 +1,11 @@
+# Defaults
+
+/node_modules/
+
+# My things
+
+/privateKeys/
+
+# Misc
+
+.env

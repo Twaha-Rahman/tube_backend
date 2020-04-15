@@ -1,0 +1,22 @@
+{
+  "short_name": "TubeNotify",
+  "name": "TubeNotify: A more customizable Youtube notificaton sysytem",
+  "description": "Giving users the option to customize their Youtube notificaton according to their need",
+  "icons": [
+    {
+      "src": "192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#000000",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#000000"
+}
