@@ -43,6 +43,6 @@ const apiRouter = require('./routes/api');
 
 app.use('/api', apiRouter);
 
-// app.listen(3005, () => {
-//   console.log(`Listening on..........port 3005`);
-// });
+app.listen(3005, () => {
+  console.log(`Listening on..........port 3005`);
+});
