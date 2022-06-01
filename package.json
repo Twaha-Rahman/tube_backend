@@ -26,6 +26,6 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "sharp": "^0.25.2"
+    "sharp": "^0.30.5"
   }
 }
